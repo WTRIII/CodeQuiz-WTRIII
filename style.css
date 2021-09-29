@@ -1,0 +1,48 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+
+  body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    width: 800px;
+    max-width: 80%;
+  }
+  
+  .btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    color: green;
+    outline: none;
+  }
+  
+  .start-btn {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hide {
+    display: none;
+  }
