@@ -61,72 +61,43 @@ startButton.addEventListener('click', startQuiz)
 answerBtn.addEventListener('click', () => {
   currentQuestionIndex++
   nextQuestion()
-})
+});
 
 function startQuiz() {
-  startButton.classList.add('hide') //hides the start button
-  currentQuestion = questions.sort() //questions should display in sequence...
-  questionContainer.classList.remove('hide') //reveals the question block
-  nextQuestion()
-}
+    startButton.classList.add('hide'); //hides the start button
+    currentQuestion = questions.sort(); //questions should display in sequence...
+    questionContainer.classList.remove('hide'); //reveals the question block
+    nextQuestion();
+};
 
 function nextQuestion() {
+    if (currentQuestionIndex === questions.length){
+    endQuiz();
+  }
+  else{
   answerBtn.innerHTML = "";
   showQuestion(currentQuestion[currentQuestionIndex])//cycles through question array
-}
-//displays the question... theoretically
+  };
+};
+//displays the questions and answer buttons
 function showQuestion(question) {
   questionEl.innerText = question.question;
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
     button.classList.add('btn')
-    if (answer.correct) {
-      button.dataset.correct = answer.correct
-    }
 
-    // button.addEventListener('click', selectAnswer)
     answerBtn.appendChild(button)
   })
-}
+};
 
-// function resetHtml {
+function endQuiz() {
+  currentQuestionIndex = 0;
+  startButton.classList.remove('hide'); //reveals the start button
+  questionContainer.classList.add('hide'); //hides the question block
+};
 
-// }
-
-// function userAnswer (input){
-
-// }
-
-// const startButton = document.getElementById('start-btn')
-// const questionContainer = document.getElementById('question-container')
-// const question = document.getElementById('question')
-// const answerBtn = document.getElementById('answer-btn')
-// function startButton{}
-// function timer{}
-// function toggleHidden{}
-// function questionCycle{}
-
-// var timeEl = document.querySelector(".time");
-// var secondsLeft = 10;
-// function setTime() {
-//   // Sets interval in variable
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-//     if(secondsLeft === 0) {
-//       // Stops execution of action at set interval
-//       clearInterval(timerInterval);
-//       // Calls function to create and append image
-//       sendMessage();
-//     }
-//   }, 1000);
-// }
-
-// while (count > 0){
-//   clearInterval(timerInterval)
-// }
-
-// function startQuiz
-// function nextQuestion
-// function selectAnswer
+// set up timer
+// set up right/wrong feedback
+// set up timer detraction as punishment for wrong
+// set up recursion
