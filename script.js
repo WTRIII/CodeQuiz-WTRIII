@@ -51,27 +51,27 @@ const questions = [
       }
   ]
 
-let currentQuestion, currentQuestionIndex;
+let currentQuestion;
+let currentQuestionIndex = 0;
 //collect user answers for storage and to tally score
-//add timer to quiz
 let userAnswers = [];
 
 startButton.addEventListener('click', startQuiz)
 
 answerBtn.addEventListener('click', () => {
   currentQuestionIndex++
-  setNextQuestion()
+  nextQuestion()
 })
 
 function startQuiz() {
   startButton.classList.add('hide') //hides the start button
   currentQuestion = questions.sort() //questions should display in sequence...
-  currentQuestionIndex = 0
   questionContainer.classList.remove('hide') //reveals the question block
   nextQuestion()
 }
 
 function nextQuestion() {
+  answerBtn.innerHTML = "";
   showQuestion(currentQuestion[currentQuestionIndex])//cycles through question array
 }
 //displays the question... theoretically
@@ -84,6 +84,7 @@ function showQuestion(question) {
     if (answer.correct) {
       button.dataset.correct = answer.correct
     }
+
     // button.addEventListener('click', selectAnswer)
     answerBtn.appendChild(button)
   })
