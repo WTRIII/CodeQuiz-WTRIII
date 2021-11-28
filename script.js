@@ -1,7 +1,7 @@
-const startButton = document.getElementById('start-btn')
-const questionContainer = document.getElementById('question-container')
-const question = document.getElementById('question')
-const answerButton = document.getElementById('answer-btn')
+const startButton = document.querySelector('#start-btn')
+const questionContainer = document.querySelector('#question-container')
+const questionEl = document.querySelector('#question')
+const answerBtn = document.querySelector('#answer-btn')
 
 const questions = [
     {
@@ -51,14 +51,14 @@ const questions = [
       }
   ]
 
-let currentQuestion, currentQuestionIndex
+let currentQuestion, currentQuestionIndex;
 //collect user answers for storage and to tally score
 //add timer to quiz
 let userAnswers = [];
 
 startButton.addEventListener('click', startQuiz)
 
-answerButton.addEventListener('click', () => {
+answerBtn.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
@@ -68,15 +68,15 @@ function startQuiz() {
   currentQuestion = questions.sort() //questions should display in sequence...
   currentQuestionIndex = 0
   questionContainer.classList.remove('hide') //reveals the question block
-  setNextQuestion()
+  nextQuestion()
 }
 
-function setNextQuestion() {
+function nextQuestion() {
   showQuestion(currentQuestion[currentQuestionIndex])//cycles through question array
 }
 //displays the question... theoretically
 function showQuestion(question) {
-  question.innerText = question.question
+  questionEl.innerText = question.question;
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
@@ -84,9 +84,48 @@ function showQuestion(question) {
     if (answer.correct) {
       button.dataset.correct = answer.correct
     }
-    button.addEventListener('click', selectAnswer)
-    answerButton.appendChild(button)
+    // button.addEventListener('click', selectAnswer)
+    answerBtn.appendChild(button)
   })
 }
 
+// function resetHtml {
 
+// }
+
+// function userAnswer (input){
+
+// }
+
+// const startButton = document.getElementById('start-btn')
+// const questionContainer = document.getElementById('question-container')
+// const question = document.getElementById('question')
+// const answerBtn = document.getElementById('answer-btn')
+// function startButton{}
+// function timer{}
+// function toggleHidden{}
+// function questionCycle{}
+
+// var timeEl = document.querySelector(".time");
+// var secondsLeft = 10;
+// function setTime() {
+//   // Sets interval in variable
+//   var timerInterval = setInterval(function() {
+//     secondsLeft--;
+//     timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+//     if(secondsLeft === 0) {
+//       // Stops execution of action at set interval
+//       clearInterval(timerInterval);
+//       // Calls function to create and append image
+//       sendMessage();
+//     }
+//   }, 1000);
+// }
+
+// while (count > 0){
+//   clearInterval(timerInterval)
+// }
+
+// function startQuiz
+// function nextQuestion
+// function selectAnswer
