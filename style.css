@@ -52,3 +52,9 @@
   .wrong{
     background-color: red;
   }
+  #timer {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+  }
+  

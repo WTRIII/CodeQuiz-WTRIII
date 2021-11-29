@@ -3,6 +3,9 @@ const questionContainer = document.querySelector('#question-container');
 const questionEl = document.querySelector('#question');
 const answerBtn = document.querySelector('#answer-btn');
 const bodyEl = document.querySelector('body');
+let timerEl = document.querySelector('#timer');
+let time = 60;
+
 
 const questions = [
   {
@@ -60,8 +63,8 @@ let userAnswers = [];
 startButton.addEventListener('click', startQuiz)
 
 answerBtn.addEventListener('click', () => {
-  // place the right/wrong if statement here
-  if (questions[currentQuestionIndex].answers.correct === false) {
+  // right/wrong if statement
+  if (this.value !== questions[currentQuestionIndex].answers.correct) {
     bodyEl.classList.add('wrong');
     setTimeout(function () {
       bodyEl.classList.remove('wrong');
@@ -82,6 +85,7 @@ function startQuiz() {
   startButton.classList.add('hide'); //hides the start button
   currentQuestion = questions.sort(); //questions should display in sequence...
   questionContainer.classList.remove('hide'); //reveals the question block
+  timerCount = setInterval(countdown, 1000);
   nextQuestion();
 };
 
@@ -97,12 +101,13 @@ function nextQuestion() {
 //displays the questions and answer buttons
 function showQuestion(question) {
   questionEl.innerText = question.question;
-  question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('btn')
+  question.answers.forEach(answers => {
+    const button = document.createElement('button');
+    button.innerText = answers.text;
+    button.setAttribute('value', answers.correct);
+    button.classList.add('btn');
 
-    answerBtn.appendChild(button)
+    answerBtn.appendChild(button);
   })
 };
 
@@ -110,8 +115,22 @@ function endQuiz() {
   currentQuestionIndex = 0;
   startButton.classList.remove('hide'); //reveals the start button
   questionContainer.classList.add('hide'); //hides the question block
+  clearInterval(timerCount);
+  time = 60;
+  timerEl.textContent = time;
+
 };
 
-// set up timer
 // set up right/wrong feedback
 // set up timer detraction as punishment for wrong
+
+function countdown() {
+
+  if (time <= 0) {
+    endQuiz();
+  } 
+  else{
+    time--;
+    timerEl.textContent = time;
+  }
+}
