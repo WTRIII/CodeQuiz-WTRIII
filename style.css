@@ -57,4 +57,16 @@
     top: 50px;
     right: 50px;
   }
+
+  .scores{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  }
   
+  .box {
+    padding: 5px 10px;
+    color: black;
+    background-color: white;
+    outline: black, 1px, solid;
+  }

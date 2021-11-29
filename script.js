@@ -3,9 +3,10 @@ const questionContainer = document.querySelector('#question-container');
 const questionEl = document.querySelector('#question');
 const answerBtn = document.querySelector('#answer-btn');
 const bodyEl = document.querySelector('body');
-let timerEl = document.querySelector('#timer');
+const timerEl = document.querySelector('#timer');
 let time = 60;
-
+const score = document.querySelector('#score');
+let points = 0;
 
 const questions = [
   {
@@ -62,24 +63,33 @@ let userAnswers = [];
 
 startButton.addEventListener('click', startQuiz)
 
-answerBtn.addEventListener('click', () => {
+  function theQuiz (){
   // right/wrong if statement
-  if (this.value !== questions[currentQuestionIndex].answers.correct) {
+  if (this.value !== 'true') {
+    console.log(this.value);
     bodyEl.classList.add('wrong');
+    time -= 20;
+
     setTimeout(function () {
       bodyEl.classList.remove('wrong');
     }, 1000);
+
   }
   else {
+    console.log(this.value);
     bodyEl.classList.add('correct');
+    points++;
+
     setTimeout(function () {
       bodyEl.classList.remove('correct');
     }, 1000);
+
   };
 
+  score.textContent = points;
   currentQuestionIndex++
   nextQuestion()
-});
+};
 
 function startQuiz() {
   startButton.classList.add('hide'); //hides the start button
@@ -98,16 +108,18 @@ function nextQuestion() {
     showQuestion(currentQuestion[currentQuestionIndex])//cycles through question array
   };
 };
+
 //displays the questions and answer buttons
 function showQuestion(question) {
   questionEl.innerText = question.question;
   question.answers.forEach(answers => {
-    const button = document.createElement('button');
+    let button = document.createElement('button');
     button.innerText = answers.text;
     button.setAttribute('value', answers.correct);
     button.classList.add('btn');
 
     answerBtn.appendChild(button);
+    button.onclick = theQuiz;
   })
 };
 
@@ -120,9 +132,6 @@ function endQuiz() {
   timerEl.textContent = time;
 
 };
-
-// set up right/wrong feedback
-// set up timer detraction as punishment for wrong
 
 function countdown() {
 
