@@ -3,7 +3,7 @@
 ## Summary
 The assignment was to create a quiz consisting of 5 or more questions. The questions did not need to relate to coding, per the instructor. The quiz needed to have a timer that subtracted points for user input of the wrong answer as well as local storage and a high score screen.
 
-### Live Site: https://wtriii.github.io/Homework-4-CodeQuiz-WTRIII/ 
+### Live Site: https://wtriii.github.io/CodeQuiz-WTRIII/ 
 
 Features Implemented:
 - question array that cycles through questions and restarts the quiz upon completion
